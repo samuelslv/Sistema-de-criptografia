@@ -32,10 +32,11 @@ class carregar:
             public_key_path = 'public_key.pem'
 
             # Senha usada para criptografar a chave privada
-            password = b'my_strong_password'
+            senha = input("Coloque a senha para carregar a chave privada: ")
+            #password = b'my_strong_password'
 
             # Carregar as chaves
-            private_key = carregar.load_private_key(private_key_path, password)
+            private_key = carregar.load_private_key(private_key_path, senha.encode("utf-8"))
             public_key = carregar.load_public_key(public_key_path)
             print("Chave Privada Carregada:", private_key)
             print("Chave Pública Carregada:", public_key)

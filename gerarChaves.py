@@ -14,11 +14,15 @@ def gerar_chaves():
     public_key = private_key.public_key()
 
     # Serializar a chave privada com proteção de senha (PEM format)
+    senha = input("Defina a senha para a chave privada: ")
     pem_private_key = private_key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.BestAvailableEncryption(
-            b'my_strong_password')
+            senha.encode("utf-8"))
+
+        #encryption_algorithm=serialization.BestAvailableEncryption(
+        #    b'my_strong_password')
     )
 
     # Serializar a chave pública (PEM format)
