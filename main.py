@@ -3,6 +3,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
+import gerarChaves
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -28,6 +29,10 @@ def main():
         match int(choice):
             case 1:
                 print("Case 1")
+                #a, b = gerarChaves.gerar_chaves()
+                #print(a)
+                #print("----------------------------")
+                #print(b)
             case 2:
                 print("Case 2")
             case 3:
