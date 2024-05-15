@@ -7,6 +7,7 @@ import gerarChaves
 import salvarChaves
 import carregarChaves
 import criptografar
+import descriptografar
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -69,6 +70,11 @@ def main():
                 # encrypt_file('path/to/your/file.txt', 'path/to/your/encrypted_file.enc', public_key)
             case 6:
                 print("Case 6")
+                # Uso
+                #private_key = descriptografar.load_private_key('private_key.pem', b'my_strong_password')
+                senha = input("Defina a senha para a chave privada: ")
+                private_key = carregarChaves.carregar.load_private_key('private_key.pem', senha.encode("utf-8"))
+                descriptografar.Arquivo('criptografados/criptoencrypted_file.enc', 'descriptografados/novo.txt', private_key) 
             case 7:
                 print("Case 7")
             case 8:
