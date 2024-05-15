@@ -6,6 +6,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 import gerarChaves
 import salvarChaves
 import carregarChaves
+import criptografar
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -61,7 +62,11 @@ def main():
             case 4:
                 print("Case 4")
             case 5:
+                caminho = 'C:/Users/samue/OneDrive/Área de Trabalho/UFPI/2024.1/segurança/av1/Trabalho/Sistema-de-criptografia/criptografados'
                 print("Case 5")
+                public_key = carregarChaves.carregar.load_public_key('public_key.pem')
+                criptografar.Arquivo('texto.txt', 'criptografados/criptoencrypted_file.enc', public_key) 
+                # encrypt_file('path/to/your/file.txt', 'path/to/your/encrypted_file.enc', public_key)
             case 6:
                 print("Case 6")
             case 7:
