@@ -5,6 +5,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 import gerarChaves
 import salvarChaves
+import carregarChaves
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -31,9 +32,7 @@ def main():
             case 1:
                 print("Case 1")
                 public_key, private_key = gerarChaves.gerar_chaves()
-                # print(a)
-                # print("----------------------------")
-                # print(b)
+
             case 2:
                 if public_key == None:
                     print(
@@ -49,9 +48,16 @@ def main():
                     else:
                         print("opcao incorreta! Retornando para o menu principal")
 
-                
             case 3:
-                print("Case 3")
+                print("Escolha qual chave importar:")
+                print('1- As duas chaves\n2-Somente a chave publica')
+                escolha = input("Escolher: ")
+                if escolha == '1':
+                    carregarChaves.carregar.main(1)
+                elif escolha == '2':
+                    carregarChaves.carregar.main(2)
+                else:
+                    print("opcao incorreta! Retornando para o menu principal")
             case 4:
                 print("Case 4")
             case 5:
