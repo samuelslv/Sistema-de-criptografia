@@ -27,12 +27,6 @@ def gerar_chaves():
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     )
 
-    # Salvar as chaves em arquivos
-    #with open('private_key.pem', 'wb') as f:
-    #    f.write(pem_private_key)
-    #with open('public_key.pem', 'wb') as f:
-    #    f.write(pem_public_key)
-
     print("Chaves geradas e salvas com sucesso!")
 
     return pem_public_key, pem_private_key
