@@ -10,6 +10,7 @@ import criptografar
 import descriptografar
 import listarChaves
 import pesquisarChaves
+import apagarChaves
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -92,6 +93,11 @@ def main():
                         print("Chave encontrada:", key)
             case 8:
                 print("Case 9")
+                # Uso
+                key_file_path = input("Digite somente o nome da chave que deseja apagar: ")  # Substitua pelo caminho completo do arquivo de chave
+                directory_path = "chaves/"+ key_file_path +".pem"
+                
+                apagarChaves.delete_key_file(directory_path)
             case 9:
                 print("Case 10")
                 break
