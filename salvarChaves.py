@@ -1,18 +1,24 @@
-        
-def salvarAmbas(pem_public_key, pem_private_key):
+import os
+
+def salvarAmbas(caminho, pem_public_key, pem_private_key):
+    # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
+    os.makedirs(os.path.dirname(caminho), exist_ok=True)
+
     # Salvar as chaves em arquivos
-    with open('private_key.pem', 'wb') as f:
+    with open('chaves/private_key.pem', 'wb') as f:
         f.write(pem_private_key)
-    with open('public_key.pem', 'wb') as f:
+    with open('chaves/public_key.pem', 'wb') as f:
         f.write(pem_public_key)
     
-    print("Sucesso na importação de ambas as chaves")
+    print("Sucesso na exportação de ambas as chaves")
 
-def salvarPublica(pem_public_key):
+def salvarPublica(caminho, pem_public_key):
+    # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
+    os.makedirs(os.path.dirname(caminho), exist_ok=True)
         # Salvar as chaves em arquivos
-    with open('public_key.pem', 'wb') as f:
+    with open('chaves/public_key.pem', 'wb') as f:
         f.write(pem_public_key)
 
-    print("Sucesso na importação da chave publica")
+    print("Sucesso na exportação da chave pública")
 
 
