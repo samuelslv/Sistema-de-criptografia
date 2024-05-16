@@ -9,6 +9,7 @@ import carregarChaves
 import criptografar
 import descriptografar
 import listarChaves
+import pesquisarChaves
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 private_key = None
@@ -80,6 +81,15 @@ def main():
                     print("Chave encontrada:", key)
             case 7:
                 print("Case 8")
+                # Uso
+                directory_path = "chaves/"  # Substitua pelo caminho do seu diretório de chaves
+                search_term = input("Digite o nome dachave que busca: ")  # Substitua pelo termo de pesquisa desejado
+                found_keys = pesquisarChaves.buscarChave(directory_path, search_term)
+                if len(found_keys) == 0:
+                    print("Chave não encontrada")
+                else:
+                    for key in found_keys:
+                        print("Chave encontrada:", key)
             case 8:
                 print("Case 9")
             case 9:
