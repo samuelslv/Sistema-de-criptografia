@@ -1,13 +1,12 @@
 import os
 
-def delete_key_file(key_file_path):
-    """Apaga o arquivo de chave especificado se ele existir."""
+def deletarChave(chaveCaminho):
     try:
-        if os.path.exists(key_file_path):
-            os.remove(key_file_path)
-            print(f"Arquivo de chave '{key_file_path}' apagado com sucesso.")
+        if os.path.exists(chaveCaminho):
+            os.remove(chaveCaminho)
+            print(f"Arquivo de chave '{chaveCaminho}' apagado com sucesso.")
         else:
-            print(f"Arquivo de chave '{key_file_path}' não encontrado.")
+            print(f"Arquivo de chave '{chaveCaminho}' não encontrado.")
     except Exception as e:
         print(f"Erro ao tentar apagar o arquivo de chave: {e}")
 

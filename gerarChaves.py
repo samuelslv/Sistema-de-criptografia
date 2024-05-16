@@ -5,17 +5,17 @@ from cryptography.hazmat.backends import default_backend
 
 def gerar_chaves():
     # Gerar a chave privada
-    private_key = rsa.generate_private_key(
+    chavePrivada = rsa.generate_private_key(
         public_exponent=65537,
         key_size=2048,
         backend=default_backend()
     )
     # Derivar a chave pública da chave privada
-    public_key = private_key.public_key()
+    chavePublica = chavePrivada.public_key()
 
     # Serializar a chave privada com proteção de senha (PEM format)
     senha = input("Defina a senha para a chave privada: ")
-    pem_private_key = private_key.private_bytes(
+    pem_private_key = chavePrivada.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.BestAvailableEncryption(
@@ -26,7 +26,7 @@ def gerar_chaves():
     )
 
     # Serializar a chave pública (PEM format)
-    pem_public_key = public_key.public_bytes(
+    pem_public_key = chavePublica.public_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     )

@@ -4,12 +4,12 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 import os
 
-def Arquivo(encrypted_file_path, output_file_path, private_key):
+def Arquivo(arquivoEncriptado, ArquivoSaida, private_key):
     # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
-    os.makedirs(os.path.dirname(output_file_path), exist_ok=True)    
+    os.makedirs(os.path.dirname(ArquivoSaida), exist_ok=True)    
     
     # Ler o conteúdo criptografado do arquivo
-    with open(encrypted_file_path, 'rb') as file:
+    with open(arquivoEncriptado, 'rb') as file:
         ciphertext = file.read()
 
     # Descriptografar o conteúdo do arquivo
@@ -23,19 +23,19 @@ def Arquivo(encrypted_file_path, output_file_path, private_key):
     )
 
     # Salvar o conteúdo descriptografado em um novo arquivo
-    with open(output_file_path, 'wb') as file:
+    with open(ArquivoSaida, 'wb') as file:
         file.write(plaintext)
 
-    print("Arquivo descriptografado com sucesso e salvo em:", output_file_path)
+    print("Arquivo descriptografado com sucesso e salvo em:", ArquivoSaida)
 
 # Exemplo de carregar a chave privada (supondo que você tenha a senha)
-def load_private_key(path, password):
-    with open(path, 'rb') as key_file:
-        private_key = serialization.load_pem_private_key(
+def carregarChavePrivada(caminho, senha):
+    with open(caminho, 'rb') as key_file:
+        chavePrivada = serialization.load_pem_private_key(
             key_file.read(),
-            password=password,
+            password=senha,
             backend=default_backend()
         )
-    return private_key
+    return chavePrivada
 
 

@@ -3,50 +3,47 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa
 import os
 
+def carregarChavePrivada(caminho, senha):
+    # Carregar a chave privada de um arquivo com proteção por senha
+    with open(caminho, 'rb') as key_file:
+        chavePrivada = serialization.load_pem_private_key(
+            key_file.read(),
+            password=senha,
+            backend=default_backend()
+        )
+    return chavePrivada
 
-class carregar:
+def carregarChavePublica(caminho):
+    # Carregar a chave pública de um arquivo
+    with open(caminho, 'rb') as key_file:
+        chavePublica = serialization.load_pem_public_key(
+            key_file.read(),
+            backend=default_backend()
+        )
+    return chavePublica
 
-    def load_private_key(path, password):
-        # Carregar a chave privada de um arquivo com proteção por senha
-        with open(path, 'rb') as key_file:
-            private_key = serialization.load_pem_private_key(
-                key_file.read(),
-                password=password,
-                backend=default_backend()
-            )
-        return private_key
+def main(opcao):
+    if opcao == 1:
+        # Caminhos para os arquivos de chave
+        private_key_caminho = 'chaves/private_key.pem'
+        public_key_caminho = 'chaves/public_key.pem'
 
-    def load_public_key(path):
-        # Carregar a chave pública de um arquivo
-        with open(path, 'rb') as key_file:
-            public_key = serialization.load_pem_public_key(
-                key_file.read(),
-                backend=default_backend()
-            )
+        # Senha usada para criptografar a chave privada
+        senha = input("Coloque a senha para carregar a chave privada: ")
+        # password = b'my_strong_password'
+
+        # Carregar as chaves
+        private_key = carregarChavePrivada(private_key_caminho, senha.encode("utf-8"))
+        public_key = carregarChavePublica(public_key_caminho)
+        print("Chave Privada Carregada:", private_key)
+        print("Chave Pública Carregada:", public_key)
+        return private_key, public_key
+
+    elif opcao == 2:
+        # Caminhos para os arquivos de chave
+        public_key_caminho = 'chaves/public_key.pem'
+
+        # Carregar as chaves
+        public_key = carregarChavePublica(public_key_caminho)
+        print("Chave Pública Carregada:", public_key)
         return public_key
-
-    def main(opcao):
-        if opcao == 1:
-            # Caminhos para os arquivos de chave
-            private_key_path = 'private_key.pem'
-            public_key_path = 'public_key.pem'
-
-            # Senha usada para criptografar a chave privada
-            senha = input("Coloque a senha para carregar a chave privada: ")
-            #password = b'my_strong_password'
-
-            # Carregar as chaves
-            private_key = carregar.load_private_key(private_key_path, senha.encode("utf-8"))
-            public_key = carregar.load_public_key(public_key_path)
-            print("Chave Privada Carregada:", private_key)
-            print("Chave Pública Carregada:", public_key)
-
-        elif opcao == 2:
-            # Caminhos para os arquivos de chave
-            public_key_path = 'public_key.pem'
-
-            # Carregar as chaves
-            public_key = carregar.load_public_key(public_key_path)
-            print("Chave Pública Carregada:", public_key)
- 
-
