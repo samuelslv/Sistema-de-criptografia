@@ -57,14 +57,13 @@ def main():
                     print(
                         "Antes de exportar é necessário gerar as chaves. Retornando para o menu principal")
                 else:
-                    caminho = 'chaves/'
                     print("Escolha qual chave exportar:")
                     print('1-As duas chaves\n2-Somente a chave pública')
                     escolha = input("Escolher: ")
                     if escolha == '1':
-                        salvarChaves.salvarAmbas(caminho, chavePublica, chavePrivada, nomeEscolhidoChaves)
+                        salvarChaves.salvarAmbas("chaves/", chavePublica, chavePrivada, nomeEscolhidoChaves)
                     elif escolha == '2':
-                        salvarChaves.salvarPublica(caminho, chavePublica, nomeEscolhidoChaves)
+                        salvarChaves.salvarPublica("chaves_externas/", chavePublica, nomeEscolhidoChaves)
                     else:
                         print("opção incorreta! Retornando para o menu principal")
 
@@ -114,7 +113,7 @@ def main():
                             for chave in chaveEncontrada:
                                 print("Chave encontrada:", chave)
 
-                        diretorioSaida = f"criptografados/{termoBuscado}_encrypted_file.enc"
+                        diretorioSaida = f"criptografados/{termoBuscado}_encrypted.enc"
 
                         criptografar.Arquivo('texto.txt', diretorioSaida, chave) 
                 elif opcao == '2':
@@ -126,16 +125,15 @@ def main():
                         print("Chaves encontradas:")
                         for chave in chaves:
                             print(chave)
-                        termoBuscado = input("Digite o nome da chave publica a ser usada para a criptografia: ")
+                        termoBuscado = input("Digite o nome da chave publica importada a ser usada para a criptografia: ")
                         chaveEncontrada = pesquisarChaves.buscarChave(diretorio, termoBuscado)
                         if len(chaveEncontrada) == 0:
                             print("Chave não encontrada")
                         else:
                             for chave in chaveEncontrada:
                                 print("Chave encontrada:", chave)
-                            senha = input("Insira a senha da chave privada: ")
-                            diretorioSaida = f"criptografados/{termoBuscado}_encrypted_file.enc"
-                            criptografar.Arquivo('texto.txt', diretorioSaida, chave, senha) 
+                            diretorioSaida = f"criptografados/{termoBuscado}_encrypted.enc"
+                            criptografar.Arquivo('texto.txt', diretorioSaida, chave) 
                            
                     
             case 5:
@@ -176,7 +174,7 @@ def main():
 
 
                 senha = input("Insira a senha da chave privada: ")
-                destino = f"descriptografados/{termoBuscado}_decrypted_file.txt"
+                destino = f"descriptografados/{termoBuscado}_decrypted.txt"
                 descriptografar.Arquivo(arquivo, destino, chave, senha)
             case 6:                
                 chaves = listarChaves.listar('chaves/', ".pem")

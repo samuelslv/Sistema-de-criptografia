@@ -18,7 +18,7 @@ def salvarPublica(caminho, pem_public_key, nomeEscolhidoChaves):
     # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
     os.makedirs(os.path.dirname(caminho), exist_ok=True)
         # Salvar as chaves em arquivos
-    caminho = f"chaves/{nomeEscolhidoChaves}.pem"
+    caminho = f"chaves_externas/{nomeEscolhidoChaves}_public.pem"
     with open(caminho, 'wb') as f:
         f.write(pem_public_key)
 

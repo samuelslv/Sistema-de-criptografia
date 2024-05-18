@@ -1,1 +1,0 @@
-Trabalho 01 – Implementação: Sistema de Gerenciamento de Chaves Públicas e Criptografia
