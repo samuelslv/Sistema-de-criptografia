@@ -1,6 +1,7 @@
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
+from getpass import getpass
 
 
 def gerar_chaves():
@@ -14,7 +15,7 @@ def gerar_chaves():
     chavePublica = chavePrivada.public_key()
 
     # Serializar a chave privada com proteção de senha (PEM format)
-    senha = input("Defina a senha para a chave privada: ")
+    senha = getpass("Defina a senha para a chave privada: ")
     pem_private_key = chavePrivada.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,

@@ -4,7 +4,17 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 import os
 
-def Arquivo(arquivoEncriptado, ArquivoSaida, private_key):
+def Arquivo(arquivoEncriptado, ArquivoSaida, caminhoChavePrivada, senha):
+
+    senha = senha.encode("utf-8")
+    # Carregar a chave privada de um arquivo com proteção por senha
+    with open(caminhoChavePrivada, 'rb') as key_file:
+        private_key = serialization.load_pem_private_key(
+            key_file.read(),
+            password=senha,
+            backend=default_backend()
+        )
+
     # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
     os.makedirs(os.path.dirname(ArquivoSaida), exist_ok=True)    
     

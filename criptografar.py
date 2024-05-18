@@ -4,7 +4,15 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 import os
 
-def Arquivo(diretorioEntrada, diretorioSaida, chavePublica):
+def Arquivo(diretorioEntrada, diretorioSaida, caminhoChave):
+    with open(caminhoChave, 'rb') as key_file:
+        chavePublica = serialization.load_pem_public_key(
+            key_file.read(),
+            backend=default_backend()
+        )
+
+
+
     # Certifique-se de que o diretório onde o arquivo criptografado será salvo existe
     os.makedirs(os.path.dirname(diretorioSaida), exist_ok=True)
 
@@ -28,4 +36,6 @@ def Arquivo(diretorioEntrada, diretorioSaida, chavePublica):
         f.write(ciphertext)
 
     print("Arquivo criptografado com sucesso e salvo em:", diretorioSaida)
+
+
 
