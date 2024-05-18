@@ -11,6 +11,7 @@ import descriptografar
 import listarChaves
 import pesquisarChaves
 import apagarChaves
+from getpass import getpass
 
 # Variáveis globais para armazenar as chaves durante a execução do script
 chavePrivada = None
@@ -35,9 +36,20 @@ def main():
 
         match int(escolha):
             case 1:
-                nomeEscolhidoChaves = input("Digite o nome para as chaves: ")
-                while nomeEscolhidoChaves == "":
-                    nomeEscolhidoChaves = input("Digite o nome para as chaves: ")
+                
+                while True:
+                    nome = input("Digite o nome para as chaves: ")
+                    diretorio = "chaves/"
+                    nome1 = nome + "_private.pem"
+                    nome2 = nome + "_public.pem"
+                    chaveEncontrada1 = pesquisarChaves.buscarChave(diretorio, nome1)
+                    chaveEncontrada2 = pesquisarChaves.buscarChave(diretorio, nome2)
+                    if len(chaveEncontrada1) != 0 or len(chaveEncontrada2) != 0:
+                        print("Chave já existe")                    
+                    else:
+                        nomeEscolhidoChaves = nome
+                        break
+
                 chavePublica, chavePrivada = gerarChaves.gerar_chaves()
 
             case 2:
