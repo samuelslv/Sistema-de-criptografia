@@ -153,29 +153,25 @@ def main():
                     for arquivo in arquivoEncontrado:
                         print("Arquivo encontrado:", arquivo)
                 
-                diretorio = "chaves/"
-                chaves = listarChaves.listar('chaves/', ".pem")
-                if len(chaves) == 0:
-                    print("Nenhuma chave encontrada no diretório especificado.")
-                else:
-                    print("Chaves encontradas:")
-                    for chave in chaves:
-                        print(chave)
-                    termoBuscado = input("Digite o nome da chave privada a ser usada para a descriptografia: ")
-                    chaveEncontrada = pesquisarChaves.buscarChave(diretorio, termoBuscado)
-                    if len(chaveEncontrada) == 0:
-                        print("Chave não encontrada")
+                    diretorio = "chaves/"
+                    chaves = listarChaves.listar('chaves/', ".pem")
+                    if len(chaves) == 0:
+                        print("Nenhuma chave encontrada no diretório especificado.")
                     else:
-                        for chave in chaveEncontrada:
-                            print("Chave encontrada:", chave)
-                
+                        print("Chaves encontradas:")
+                        for chave in chaves:
+                            print(chave)
+                        termoBuscado = input("Digite o nome da chave privada a ser usada para a descriptografia: ")
+                        chaveEncontrada = pesquisarChaves.buscarChave(diretorio, termoBuscado)
+                        if len(chaveEncontrada) == 0:
+                            print("Chave não encontrada")
+                        else:
+                            for chave in chaveEncontrada:
+                                print("Chave encontrada:", chave)
 
-
-
-
-                senha = input("Insira a senha da chave privada: ")
-                destino = f"descriptografados/{termoBuscado}_decrypted.txt"
-                descriptografar.Arquivo(arquivo, destino, chave, senha)
+                            senha = getpass("Insira a senha da chave privada: ")
+                            destino = f"descriptografados/{termoBuscado}_decrypted.txt"
+                            descriptografar.Arquivo(arquivo, destino, chave, senha)
             case 6:                
                 chaves = listarChaves.listar('chaves/', ".pem")
                 if len(chaves) == 0:
