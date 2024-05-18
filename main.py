@@ -113,9 +113,9 @@ def main():
                             for chave in chaveEncontrada:
                                 print("Chave encontrada:", chave)
 
-                        diretorioSaida = f"criptografados/{termoBuscado}_encrypted.enc"
+                            diretorioSaida = f"criptografados/{termoBuscado}_encrypted.enc"
 
-                        criptografar.Arquivo('texto.txt', diretorioSaida, chave) 
+                            criptografar.Arquivo('texto.txt', diretorioSaida, chave) 
                 elif opcao == '2':
                     diretorio = "chaves_importadas/"
                     chaves = listarChaves.listar('chaves_importadas/', ".pem")
